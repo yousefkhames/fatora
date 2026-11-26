@@ -545,6 +545,7 @@
         '<div class="btnrow">' +
           '<button class="btn soft" id="s-exp-backup">' + esc(t('exportBackup')) + '</button>' +
           '<button class="btn soft" id="s-imp-backup">' + esc(t('importBackup')) + '</button>' +
+          '<button class="btn soft" id="s-exp-csv">' + esc(t('exportCsv')) + '</button>' +
         '</div>' +
         '<input type="file" id="s-import-file" accept="application/json,.json" hidden>' +
         '<div class="btnrow"><button class="btn ghost danger" id="s-reset">' + esc(t('resetAll')) + '</button></div>' +
@@ -887,6 +888,14 @@
 
     $('#s-exp-settings').onclick = function () { download('fatora-settings.json', state.settings); };
     $('#s-exp-backup').onclick = function () { download('fatora-backup.json', state); };
+    $('#s-exp-csv').onclick = function () {
+      var blob = new Blob([Core.toCsv(state.docs, state.settings.currency)], { type: 'text/csv;charset=utf-8' });
+      var a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'fatora-documents.csv';
+      a.click();
+      setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
+    };
     $('#s-imp-settings').onclick = function () { importFile('settings'); };
     $('#s-imp-backup').onclick = function () { importFile('backup'); };
     $('#s-reset').onclick = function () {

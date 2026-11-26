@@ -193,6 +193,28 @@
     } catch (e) { return iso; }
   }
 
+  /* ---------- CSV export ---------- */
+  function csvCell(v) {
+    var s = String(v == null ? '' : v);
+    return /[",\n\r]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s;
+  }
+
+  function toCsv(docs, currency) {
+    var head = ['type', 'number', 'status', 'issue_date', 'due_date', 'client_name', 'client_phone', 'subtotal', 'discount', 'tax', 'total', 'paid', 'currency'];
+    var lines = [head.join(',')];
+    (docs || []).forEach(function (d) {
+      if (!d) return;
+      var tot = computeTotals(d.items, { discountType: d.discountType, discountValue: d.discountValue, taxRate: d.taxRate });
+      lines.push([
+        d.type, d.number, d.status, d.issueDate, d.dueDate,
+        d.client && d.client.name, d.client && d.client.phone,
+        tot.subtotal.toFixed(2), tot.discount.toFixed(2), tot.tax.toFixed(2), tot.total.toFixed(2),
+        toNumber(d.amountPaid).toFixed(2), currency || ''
+      ].map(csvCell).join(','));
+    });
+    return '\ufeff' + lines.join('\r\n');
+  }
+
   /* ---------- persistence-safe serialization ---------- */
   function serialize(state) {
     return JSON.stringify(state, null, 2);
@@ -271,6 +293,7 @@
     validateDoc: validateDoc,
     formatMoney: formatMoney,
     formatDate: formatDate,
+    toCsv: toCsv,
     serialize: serialize,
     sanitizeImported: sanitizeImported
   };

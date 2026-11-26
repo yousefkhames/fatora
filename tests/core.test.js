@@ -164,6 +164,23 @@ test('serialize: round-trips through sanitize', () => {
   assert.equal(back.settings.businessName, 'Round Trip');
 });
 
+test('toCsv: header, escaping and totals', () => {
+  const s = Core.defaultSettings();
+  const doc = Core.newDoc('invoice', s);
+  doc.number = 'INV-0001';
+  doc.client.name = 'ACME, Inc. "East"';
+  doc.items = [{ id: 'x', description: 'a', qty: 2, price: 10 }];
+  doc.taxRate = 10;
+  const csv = Core.toCsv([doc, null], 'EGP');
+  const lines = csv.replace('\ufeff', '').split('\r\n');
+  assert.equal(lines.length, 3); // header + 1 doc (null skipped)
+  assert.ok(lines[0].startsWith('type,number,status'));
+  assert.ok(lines[1].includes('INV-0001'));
+  assert.ok(lines[1].includes('"ACME, Inc. ""East"""'));
+  assert.ok(lines[1].includes('22.00')); // total 20 + 10% tax
+  assert.ok(lines[1].endsWith('EGP'));
+});
+
 test('i18n: ar/en dictionaries have identical key sets', () => {
   const en = Object.keys(I18N.DICT.en).sort();
   const ar = Object.keys(I18N.DICT.ar).sort();
