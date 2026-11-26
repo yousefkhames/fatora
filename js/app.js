@@ -1,4 +1,4 @@
-/* Fatora app — hash-routed single-page UI. */
+/* Fatora app: hash-routed single-page UI. */
 (function () {
   'use strict';
   var Core = window.FatoraCore;
@@ -672,18 +672,17 @@
       el.addEventListener('change', syncFromForm);
     });
 
-    $('#e-client-pick') && ($('#e-client-pick').onchange = function () {
+    var pick = $('#e-client-pick');
+    if (pick) pick.onchange = function () {
       var c = null;
-      state.clients.forEach(function (x) { if (x.id === this.value) c = x; }, this);
-      var sel = $('#e-client-pick');
-      state.clients.forEach(function (x) { if (x.id === sel.value) c = x; });
+      state.clients.forEach(function (x) { if (x.id === pick.value) c = x; });
       if (c) {
         doc.client = { id: doc.client.id, name: c.name, phone: c.phone, email: c.email, address: c.address };
         $('#e-cname').value = c.name; $('#e-cphone').value = c.phone;
         $('#e-cemail').value = c.email; $('#e-caddr').value = c.address;
         syncFromForm();
       }
-    });
+    };
 
     $('#e-disctype').addEventListener('change', function () {
       $('#e-discval').disabled = $('#e-disctype').value === 'none';
@@ -738,8 +737,7 @@
       html2canvas(sheetEl, { scale: 2, useCORS: true, backgroundColor: '#ffffff' }).then(function (canvas) {
         var pdf = new window.jspdf.jsPDF({ unit: 'mm', format: 'a4', orientation: 'portrait' });
         var pageW = 210, pageH = 297;
-        var pxPerMm = canvas.width / (pageW * 2); // canvas px per mm at scale 2? width = 794*2 px for 210mm
-        pxPerMm = canvas.width / pageW;
+        var pxPerMm = canvas.width / pageW;
         var pageCanvasH = Math.floor(pageH * pxPerMm);
         var y = 0, page = 0;
         while (y < canvas.height) {

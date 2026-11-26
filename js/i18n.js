@@ -1,4 +1,4 @@
-/* Fatora i18n — Arabic and English dictionaries with a tiny translator. */
+/* Fatora i18n: Arabic and English dictionaries with a tiny translator. */
 (function (root, factory) {
   if (typeof module === 'object' && module.exports) module.exports = factory();
   else root.FatoraI18n = factory();
@@ -31,7 +31,7 @@
       outstanding: 'Outstanding',
       openQuotes: 'Open quotes',
       emptyTitle: 'No documents yet',
-      emptyBody: 'Create your first invoice or quote — it takes less than a minute.',
+      emptyBody: 'Create your first invoice or quote, it takes less than a minute.',
       noResults: 'Nothing matches your search.',
       client: 'Client',
       clientName: 'Client name',

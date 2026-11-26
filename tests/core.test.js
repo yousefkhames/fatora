@@ -131,7 +131,7 @@ test('sanitizeImported settings: keeps valid, drops wrong types and bad values',
   assert.equal(s.accent, '#0e7c66');     // invalid color -> default
   assert.equal(s.currency, 'EGP');       // unknown currency -> default
   assert.equal(s.language, 'ar');        // unsupported lang -> default
-  assert.equal(s.taxRate, 14);           // string was not applied; default kept... verify:
+  assert.equal(s.taxRate, 14);           // string-typed value rejected, default kept
 });
 
 test('sanitizeImported settings: defaults when junk', () => {
