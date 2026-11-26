@@ -815,6 +815,14 @@
       persist();
       document.documentElement.style.setProperty('--accent', s.accent);
       document.documentElement.style.setProperty('--accent-soft', s.accent + '1f');
+      // live-rebrand the app bar and logo preview without re-rendering (keeps focus)
+      var brandStrong = $('.brand-text strong');
+      if (brandStrong) brandStrong.textContent = s.businessName || t('appName');
+      var brandSmall = $('.brand-text small');
+      if (brandSmall) brandSmall.textContent = s.tagline;
+      else if (s.tagline) { var bt = $('.brand-text'); if (bt) bt.insertAdjacentHTML('beforeend', '<small>' + esc(s.tagline) + '</small>'); }
+      var lp = $('.logo-preview span');
+      if (lp) lp.textContent = (s.businessName || t('appName')).trim().charAt(0) || 'ف';
     }
 
     $all('.panel input, .panel select, .panel textarea').forEach(function (el) {
