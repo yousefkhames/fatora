@@ -286,6 +286,12 @@ textarea.input { resize: vertical; }
 
 /* ---------- small phones ---------- */
 @media (max-width: 560px) {
+  .sheet { padding: 24px 16px 18px; font-size: 12px; }
+  .sheet-meta h2 { font-size: 19px; }
+  .sheet-brand h1 { font-size: 16px; }
+  .sheet-logo, .sheet-logo-fallback { width: 42px; height: 42px; font-size: 19px; }
+  .sheet-totals { width: 190px; }
+  .sheet-dates { gap: 16px; }
   .items-head { display: none; }
   .item-row {
     grid-template-columns: 58px 1fr 100px 28px;

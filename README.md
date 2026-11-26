@@ -48,7 +48,8 @@ No accounts. No server. No fees. Open the page and start billing.
 - **Clients**, save client details once, reuse them on every document.
 - **Dashboard**, totals for invoiced / collected / outstanding / open quotes, with search and
   filters by type and status.
-- **Private by design**, everything lives in `localStorage`; full JSON backup/restore included.
+- **Private by design**, everything lives in `localStorage`; full JSON backup/restore and
+  one-click **CSV export** of all documents for your accountant.
 - **Mobile-first**, designed for a phone screen first, with a side-by-side editor + live
   preview on desktop.
 
