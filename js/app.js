@@ -562,7 +562,13 @@
     document.documentElement.style.setProperty('--accent-soft', s.accent + '1f');
 
     var app = $('#app');
-    if (ui.route.view === 'editor') app.innerHTML = renderEditor(ui.route.id) , bindEditor();
+    if (ui.route.view === 'new') {
+      var fresh = createDoc(ui.route.type);
+      ui.route = { view: 'editor', id: fresh.id };
+      try { window.history.replaceState(null, '', '#/edit/' + fresh.id); } catch (e) { /* jsdom quirk */ }
+      app.innerHTML = renderEditor(fresh.id); bindEditor();
+    }
+    else if (ui.route.view === 'editor') app.innerHTML = renderEditor(ui.route.id) , bindEditor();
     else if (ui.route.view === 'settings') app.innerHTML = renderSettings(), bindSettings();
     else app.innerHTML = renderDashboard(), bindDashboard();
     bindShell();

@@ -67,6 +67,10 @@ No accounts. No server. No fees. Open the page and start billing.
 # run the unit tests (money math, numbering, i18n parity, import sanitizing)
 node --test tests/core.test.js
 
+# full DOM click-through (dashboard, editor, settings, conversion)
+npm install jsdom
+NODE_PATH=node_modules node tests/smoke.test.js
+
 # serve locally
 python3 -m http.server 8000   # then open http://localhost:8000
 ```
