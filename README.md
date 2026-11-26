@@ -13,6 +13,15 @@
 
 ---
 
+## Screenshots
+
+Captured from the live site (https://yousefkhames.github.io/fatora/).
+
+<p>
+  <img src="docs/screenshots/live-desktop.png" alt="fatora desktop view" width="640">
+  <img src="docs/screenshots/live-mobile.png" alt="fatora mobile view" width="200">
+</p>
+
 ## What is it?
 
 Fatora (فاتورة, "invoice") is a small, fast, fully client-side web app for freelancers and
