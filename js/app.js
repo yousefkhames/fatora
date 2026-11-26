@@ -694,6 +694,16 @@
       $('#e-discval').disabled = $('#e-disctype').value === 'none';
     });
 
+    // Marking an invoice as paid fills the paid amount with the current total.
+    $('#e-status').addEventListener('change', function () {
+      var paidEl = $('#e-paid');
+      if (paidEl && $('#e-status').value === 'paid' && Core.toNumber(paidEl.value) === 0) {
+        syncFromForm();
+        paidEl.value = docTotals(doc).total;
+        syncFromForm();
+      }
+    });
+
     $('#e-additem').onclick = function () {
       doc.items.push(Core.newItem());
       var box = $('#e-items');
