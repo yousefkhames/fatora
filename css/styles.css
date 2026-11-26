@@ -284,6 +284,22 @@ textarea.input { resize: vertical; }
   @page { size: A4; margin: 10mm; }
 }
 
+/* ---------- small phones ---------- */
+@media (max-width: 560px) {
+  .items-head { display: none; }
+  .item-row {
+    grid-template-columns: 58px 1fr 100px 28px;
+    grid-template-areas: "desc desc desc desc" "qty price amt del";
+    row-gap: 6px; margin-bottom: 12px; padding-bottom: 12px;
+    border-bottom: 1px dashed var(--line);
+  }
+  .item-row .i-desc { grid-area: desc; }
+  .item-row .i-qty { grid-area: qty; }
+  .item-row .i-price { grid-area: price; }
+  .item-row .i-amt { grid-area: amt; align-self: center; }
+  .item-row .i-del { grid-area: del; }
+}
+
 /* ---------- larger screens ---------- */
 @media (min-width: 640px) {
   .cards { grid-template-columns: repeat(4, 1fr); }
