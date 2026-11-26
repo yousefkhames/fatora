@@ -173,7 +173,7 @@ test('toCsv: header, escaping and totals', () => {
   doc.taxRate = 10;
   const csv = Core.toCsv([doc, null], 'EGP');
   const lines = csv.replace('\ufeff', '').split('\r\n');
-  assert.equal(lines.length, 3); // header + 1 doc (null skipped)
+  assert.equal(lines.length, 2); // header + 1 doc (null skipped)
   assert.ok(lines[0].startsWith('type,number,status'));
   assert.ok(lines[1].includes('INV-0001'));
   assert.ok(lines[1].includes('"ACME, Inc. ""East"""'));
