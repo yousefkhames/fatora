@@ -206,10 +206,11 @@
   }
 
   function logoSvg() {
-    return '<svg viewBox="0 0 40 40" width="34" height="34" fill="none" xmlns="http://www.w3.org/2000/svg">' +
-      '<rect x="6" y="3" width="24" height="30" rx="4" fill="var(--accent)"/>' +
-      '<path d="M12 11h12M12 16h12M12 21h7" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>' +
-      '<path d="M26 25l5 5m0 0l7-8" stroke="var(--accent)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none" transform="translate(-4,-1)"/>' +
+    return '<svg viewBox="0 0 96 96" width="34" height="34" fill="none" xmlns="http://www.w3.org/2000/svg">' +
+      '<rect x="14" y="6" width="58" height="74" rx="12" fill="var(--accent)"/>' +
+      '<path d="M30 26h26M30 38h26M30 50h15" stroke="#fff" stroke-width="6" stroke-linecap="round"/>' +
+      '<circle cx="66" cy="70" r="20" fill="#ffffff"/>' +
+      '<path d="M57 70l7 7 13-15" stroke="var(--accent)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>' +
       '</svg>';
   }
 
@@ -361,11 +362,11 @@
             opt('none', t('discountNone'), doc.discountType) +
             opt('percent', t('discountPercent'), doc.discountType) +
             opt('fixed', t('discountFixed'), doc.discountType) + '</select></label>' +
-          '<label class="fld"><span>' + esc(t('discount')) + '</span><input type="number" min="0" step="any" id="e-discval" class="input" value="' + esc(doc.discountValue) + '"' + (doc.discountType === 'none' ? ' disabled' : '') + '></label>' +
+          '<label class="fld"><span>' + esc(t('discount')) + '</span><input type="number" min="0" step="any" inputmode="decimal" id="e-discval" class="input" value="' + esc(doc.discountValue) + '"' + (doc.discountType === 'none' ? ' disabled' : '') + '></label>' +
         '</div>' +
         '<div class="grid2">' +
-          '<label class="fld"><span>' + esc(t('taxRate')) + '</span><input type="number" min="0" step="any" id="e-tax" class="input" value="' + esc(doc.taxRate) + '"></label>' +
-          (isInv ? '<label class="fld"><span>' + esc(t('amountPaid')) + '</span><input type="number" min="0" step="any" id="e-paid" class="input" value="' + esc(doc.amountPaid) + '"></label>' : '<span></span>') +
+          '<label class="fld"><span>' + esc(t('taxRate')) + '</span><input type="number" min="0" step="any" inputmode="decimal" id="e-tax" class="input" value="' + esc(doc.taxRate) + '"></label>' +
+          (isInv ? '<label class="fld"><span>' + esc(t('amountPaid')) + '</span><input type="number" min="0" step="any" inputmode="decimal" id="e-paid" class="input" value="' + esc(doc.amountPaid) + '"></label>' : '<span></span>') +
         '</div>' +
         '<label class="fld"><span>' + esc(t('notes')) + '</span><textarea id="e-notes" class="input" rows="3" placeholder="' + esc(t('notesPlaceholder')) + '">' + esc(doc.notes) + '</textarea></label>' +
       '</section>' +
@@ -401,8 +402,8 @@
   function itemRow(it) {
     return '<div class="item-row" data-item="' + esc(it.id) + '">' +
       '<input class="input i-desc" value="' + esc(it.description) + '" placeholder="' + esc(t('itemPlaceholder')) + '">' +
-      '<input class="input i-qty num" type="number" min="0" step="any" value="' + esc(it.qty) + '">' +
-      '<input class="input i-price num" type="number" min="0" step="any" value="' + esc(it.price) + '">' +
+      '<input class="input i-qty num" type="number" min="0" step="any" inputmode="decimal" value="' + esc(it.qty) + '">' +
+      '<input class="input i-price num" type="number" min="0" step="any" inputmode="decimal" value="' + esc(it.price) + '">' +
       '<span class="i-amt num">' + esc(money(Core.lineTotal(it))) + '</span>' +
       '<button class="mini danger i-del" title="' + esc(t('removeItem')) + '">✕</button>' +
     '</div>';
