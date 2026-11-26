@@ -34,7 +34,7 @@
     return null;
   }
 
-  function persist() { Store.save(state); }
+  function persist() { if (!Store.save(state)) toast(t('storageFull')); }
 
   function scheduleSave() {
     clearTimeout(ui.saveTimer);
@@ -883,6 +883,7 @@
           try { data = JSON.parse(reader.result); } catch (err) { data = null; }
           var clean = Core.sanitizeImported(data, kind);
           if (!clean) { toast(t('importBad')); return; }
+          if (kind !== 'settings' && !confirm(t('confirmRestore').replace('{n}', clean.docs.length))) return;
           if (kind === 'settings') { state.settings = clean; }
           else { state.settings = clean.settings; state.docs = clean.docs; state.clients = clean.clients; }
           persist();

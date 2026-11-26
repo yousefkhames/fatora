@@ -1,5 +1,5 @@
 /* Fatora service worker: app-shell cache so the app works offline after first load. */
-const CACHE = 'fatora-v2';
+const CACHE = 'fatora-v3';
 const ASSETS = [
   './',
   'index.html',

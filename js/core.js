@@ -26,8 +26,21 @@
   }
 
   function toNumber(v, fallback) {
-    var n = typeof v === 'string' ? parseFloat(v.replace(',', '.')) : Number(v);
-    return isFinite(n) ? n : (fallback || 0);
+    var n;
+    if (typeof v === 'string') {
+      var t = v.trim()
+        .replace(/[\u0660-\u0669]/g, function (c) { return c.charCodeAt(0) - 0x0660; })
+        .replace(/[\u06F0-\u06F9]/g, function (c) { return c.charCodeAt(0) - 0x06F0; })
+        .replace(/\u066B/g, '.').replace(/[\u066C\s]/g, '');
+      if (t.indexOf(',') >= 0 && t.indexOf('.') >= 0) {
+        // both marks: the last one is the decimal mark, the other groups thousands
+        t = t.lastIndexOf(',') > t.lastIndexOf('.') ? t.replace(/\./g, '').replace(',', '.') : t.replace(/,/g, '');
+      } else if (t.indexOf(',') >= 0) {
+        t = /^\d{1,3}(,\d{3})+$/.test(t) ? t.replace(/,/g, '') : t.replace(',', '.');
+      }
+      n = /^[+-]?(\d+\.?\d*|\.\d+)$/.test(t) ? parseFloat(t) : NaN;
+    } else n = Number(v);
+    return isFinite(n) && Math.abs(n) <= 1e12 ? n : (fallback || 0);
   }
 
   function clampNonNegative(n) { return n < 0 ? 0 : n; }

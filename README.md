@@ -93,3 +93,8 @@ branch (main, root)**, that's it.
 ## License
 
 [MIT](LICENSE) © 2026 Yousef Khames
+
+## Round 2 review notes
+- Inputs accept Arabic-Indic digits and decimal commas; absurd values are ignored instead of breaking totals.
+- Backup import is sanitised and asks for confirmation before replacing data; failed saves show a message.
+- Limits: WhatsApp links are only checked as generated wa.me URLs (not opened in the WhatsApp app); no cloud sync, data stays in this browser.

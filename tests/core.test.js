@@ -205,3 +205,9 @@ test('i18n: dir is rtl only for ar', () => {
   assert.equal(I18N.dir('ar'), 'rtl');
   assert.equal(I18N.dir('en'), 'ltr');
 });
+
+test('toNumber reads Arabic digits, decimal commas and thousand separators', () => {
+  assert.equal(Core.toNumber('١٢٫٥'), 12.5); assert.equal(Core.toNumber('1,5'), 1.5);
+  assert.equal(Core.toNumber('1,500'), 1500); assert.equal(Core.toNumber('1,234.50'), 1234.5); assert.equal(Core.toNumber('1.234,50'), 1234.5);
+  assert.equal(Core.toNumber('abc', 7), 7); assert.equal(Core.toNumber('1e99'), 0); assert.equal(Core.toNumber('12abc'), 0);
+});
