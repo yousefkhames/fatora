@@ -1,5 +1,5 @@
 /* Fatora service worker: app-shell cache so the app works offline after first load. */
-const CACHE = 'fatora-v1';
+const CACHE = 'fatora-v2';
 const ASSETS = [
   './',
   'index.html',
@@ -10,6 +10,18 @@ const ASSETS = [
   'js/app.js',
   'vendor/html2canvas.min.js',
   'vendor/jspdf.umd.min.js',
+  'fonts/Inter-latin-400.woff2',
+  'fonts/Inter-latin-600.woff2',
+  'fonts/Inter-latin-700.woff2',
+  'fonts/Tajawal-arabic-400.woff2',
+  'fonts/Tajawal-arabic-500.woff2',
+  'fonts/Tajawal-arabic-700.woff2',
+  'fonts/Tajawal-arabic-800.woff2',
+  'fonts/Tajawal-latin-400.woff2',
+  'fonts/Tajawal-latin-500.woff2',
+  'fonts/Tajawal-latin-700.woff2',
+  'fonts/Tajawal-latin-800.woff2',
+  'fonts/fonts.css',
   'assets/logo.svg',
   'manifest.webmanifest'
 ];

@@ -83,8 +83,8 @@ branch (main, root)**, that's it.
 
 - The exported PDF is **raster** (rendered image pages), so text in it is not selectable;
   use the Print button for a fully vector PDF via the browser's print dialog.
-- Fonts load from Google Fonts, so the very first visit needs a connection; everything else
-  works offline afterwards.
+- Fonts (Inter, Tajawal) are bundled in `fonts/`, so there are no third-party requests; the very
+  first visit needs a connection, then everything works offline.
 - Data lives in the browser's `localStorage` of one device, use the JSON backup to move
   between devices. Clearing site data erases your documents.
 - No multi-currency per-document (one currency per installation), no recurring invoices,
