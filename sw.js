@@ -1,5 +1,5 @@
 /* Fatora service worker: app-shell cache so the app works offline after first load. */
-const CACHE = 'fatora-v3';
+const CACHE = 'fatora-v4';
 const ASSETS = [
   './',
   'index.html',
@@ -35,7 +35,7 @@ self.addEventListener('install', (e) => {
 self.addEventListener('activate', (e) => {
   e.waitUntil(
     caches.keys()
-      .then((keys) => Promise.all(keys.filter((k) => k !== CACHE).map((k) => caches.delete(k))))
+      .then((keys) => Promise.all(keys.filter((k) => k.startsWith('fatora-') && k !== CACHE).map((k) => caches.delete(k))))
       .then(() => self.clients.claim())
   );
 });

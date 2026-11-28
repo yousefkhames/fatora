@@ -107,3 +107,10 @@ branch (main, root)**, that's it.
 - Inputs accept Arabic-Indic digits and decimal commas; absurd values are ignored instead of breaking totals.
 - Backup import is sanitised and asks for confirmation before replacing data; failed saves show a message.
 - Limits: WhatsApp links are only checked as generated wa.me URLs (not opened in the WhatsApp app); no cloud sync, data stays in this browser.
+
+
+## Demo / portfolio project
+
+Static GitHub Pages site. Data stays in your browser. Sample data is fictional and results are not professional, legal, medical or financial advice.
+
+By Yousef Khames · من تطوير يوسف خميس
